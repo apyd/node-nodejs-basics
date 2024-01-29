@@ -16,9 +16,9 @@ const performCalculations = async () => {
     results[i] = await new Promise((resolve, reject) => {
       workers[i].on('message', (message) => {
         if (message.status === 'resolved') {
-          resolve(message.data);
+          resolve(message);
         } else {
-          reject(message.data);
+          reject(message);
         }
       });
       workers[i].once('error', (err) => {
