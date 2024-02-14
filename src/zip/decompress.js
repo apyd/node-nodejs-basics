@@ -19,7 +19,7 @@ const decompress = async () => {
   }
   catch (error) {
     console.error('Error occurred: ', error)
-    process.exitCode = 1
+    process.exit(1)
   }
 };
 

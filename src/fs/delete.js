@@ -1,6 +1,7 @@
 import { rm } from 'node:fs/promises'
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { throwFSError } from '../utils/index.js';
 
 const remove = async () => {
     try {
@@ -8,10 +9,7 @@ const remove = async () => {
       await rm(filePath)
     }
     catch (error) {
-      if(error.code === 'ENOENT') {
-        throw new Error('FS operation failed')
-      }
-      throw error
+      throwFSError(error)
     }
 };
 

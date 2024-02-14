@@ -1,6 +1,7 @@
 import { open } from 'node:fs/promises'
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { throwFSError } from '../../utils/index.js';
  
 const create = async () => {
     try {
@@ -9,10 +10,7 @@ const create = async () => {
       await file.writeFile('I am fresh and young')
     }
     catch (error) {
-      if(error.code === 'EEXIST') {  
-        throw new Error('FS operation failed')
-      }
-      throw error
+      throwFSError(error)
     }
 };
 

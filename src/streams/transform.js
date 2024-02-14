@@ -6,7 +6,7 @@ const transform = async () => {
     constructor() {
       super()
     }
-    _transform(chunk, encoding, callback) {
+    _transform(chunk, _, callback) {
       this.push(chunk.toString().split('').reverse().join('') + '\n')
       callback()
     }

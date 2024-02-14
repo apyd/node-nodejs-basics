@@ -1,6 +1,7 @@
 import { mkdir, opendir, copyFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { throwFSError } from '../../utils/index.js';
 
 const copy = async () => {
   try {
@@ -15,10 +16,7 @@ const copy = async () => {
     }
   }
   catch(error) {
-    if(error.code === 'ENOENT' || error.code === 'EEXIST') {
-      throw new Error('FS operation failed')
-    }
-    throw error
+    throwFSError(error);
   }
 
 };

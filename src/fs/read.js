@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url';
+import { throwFSError } from '../../utils/index.js';
 
 const read = async () => {
     try {
@@ -9,10 +10,7 @@ const read = async () => {
       console.log(fileContent)
     }
     catch (error) {
-      if(error.code === 'ENOENT') {
-        throw new Error('FS operation failed')
-      }
-      throw error
+      throwFSError(error)
     }
 };
 
