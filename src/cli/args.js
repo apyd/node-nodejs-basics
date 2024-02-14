@@ -6,7 +6,7 @@ const parseArgs = () => {
   const mappedArgs = args
     .map((arg, index) => {
       if(index % 2 === 0) {
-        return `${arg} is ${args[index + 1]}`
+        return `${arg.replace('--', '')} is ${args[index + 1]}`
       }
     })
     .filter(arg => arg)
